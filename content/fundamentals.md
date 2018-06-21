@@ -11,6 +11,7 @@ For my case (and yours, if you're reading this), that means that the fundamental
 * Bash
 * Vim
 * Bash
+* The Git command line
 * A proven, yet relevant programming language. Today, for me, that's Python. It may be different for you or for me ten years from now.
 * Linux troubleshooting toolsets (`iostat`, `htop`, `dmesg`, `bash`, etc).
 * Did I mention Bash?
