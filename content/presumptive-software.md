@@ -2,12 +2,10 @@ Title: On Presumptive Software
 Date: 2018-08-30
 Category: philosophy
 
-## Prelude
 If there's one thing that the great [Saint Atwood](https://blog.codinghorror.com/) taught me, it's this - software is built to help people do their jobs. That's why we have automation, right? Because we need something done and would rather not spend all our time manually building something. That's why we have software, computers, and all of these crazy frameworks and languages we spend our times learning - so we can build something that someone needs.
 
 Remember that when you build your capabilities. Try not to make assumptions or let your own technical ego blind you to the fundamental truth that, at the end of the day, you are helping people. If what you've built causes confusion or slows someone down, you have not succeeded. At best, you've just uncovered another lesson you need to learn but at worst, you've indulged in simply building something that only made you feel good about your abilities.
 
-## Evidence
 When a Debian-based system installs a package that has an associated service (sshd, apache2, etc), the service is immediately started. The user has no input into this decision. You installed a service, surely you want to start it, right?
 
 No. Not right in the slightest. 
