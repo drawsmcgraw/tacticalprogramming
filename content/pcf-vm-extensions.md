@@ -3,7 +3,7 @@ Date: 2019-05-07
 Category: howto
 
 # Problem
-As of this writing, the docs for [deploying PCF on Amazon using Terraform](https://docs.pivotal.io/pivotalcf/2-5/customizing/aws-terraform.html) have a gap that could lead to a lot of frustration. In short, the Terraform files and docs have switched to using Network Load Balancers instead of 'Classic', Elastic Load Balancers. Modernizing is fine, but it's left out a detail that we need to implement ourselves.
+As of this writing, the docs for [deploying PCF on Amazon using Terraform](https://docs.pivotal.io/pivotalcf/2-5/customizing/aws-terraform.html) have a gap that could lead to a lot of frustration. In short, the Terraform files and docs have switched to using Network Load Balancers instead of 'Classic', Elastic Load Balancers. The end result is there is a detail that we need to implement ourselves.
 
 The problem is that our router vms need to be placed behind the `vms_security_group` in order to accept HTTP/HTTPS traffic. But how do we tell PCF (and therefore, Bosh) to make that association? We do it with the `vm_extension` feature.
 
