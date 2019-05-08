@@ -194,10 +194,10 @@ For reasons I don't understand yet, the product deployment will fail because the
 
 To fix this, re-enter the key in the Ops Manager UI.
 
-You may now continue with your deployment as normal. When your vms get created, the router vms will be placed behind the `vms_security_group`, which allows your HTTP/HTTPS traffic through.
+You may now continue with your deployment as normal. When your vms get created, the router vms will be placed behind the appropriate security groups, which allows your HTTP/HTTPS traffic through.
 
 ## Last Thoughts
-This really is the ugly, mnaual way of doing it. A more 'correct' way of doing this would be using the Ops Manager api to update the job config for your product to include the vm extensions. That journey begins with [the API docs for managing vm extensions](https://docs.pivotal.io/pivotalcf/2-5/opsman-api/?shell#configuring-resources-for-a-job-experimental). 
+This really is the ugly, manual way of doing it. A more 'correct' way of doing this would be using the Ops Manager api to update the job config for your product to include the vm extensions. That journey begins with [the API docs for managing vm extensions](https://docs.pivotal.io/pivotalcf/2-5/opsman-api/?shell#configuring-resources-for-a-job-experimental). 
 
 You would still be using `om` to create the vm extensions, but you wouldn't have to pull down, update, and push back the product configuration. My hope is to come up with that cleaner method and follow up on that topic here. Eventually.
 
