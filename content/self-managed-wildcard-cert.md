@@ -2,6 +2,13 @@ Title: Managing Your own CA and Issuing a Wildcard Cert
 Date: 2019-06-06
 Category: howto
 
+# Disclaimer
+It was recently brought to my attention that this problem is probably solved by using `certstrap`, courtesty of Square. If you're in a hurry, I'd encourage you to go and give that a try first.
+
+Link: https://github.com/square/certstrap
+
+I'm leaving the below for posterity and pedagogical use.
+
 # Problem
 Wildcard certs are expensive, especially for home labs. It seems, though, that the Internet is full of how-to's and "works for me!" type solutions. That browser behavior has changed since a lot of those solutions were published only exacerbates the issue.
 
