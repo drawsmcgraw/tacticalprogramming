@@ -5,7 +5,7 @@ Category: howto
 # Disclaimer
 It was recently brought to my attention that this problem is probably solved by using `certstrap`, courtesty of Square. If you're in a hurry, I'd encourage you to go and give that a try first.
 
-Link: https://github.com/square/certstrap
+Link: [https://github.com/square/certstrap](https://github.com/square/certstrap)
 
 I'm leaving the below for posterity and pedagogical use.
 
