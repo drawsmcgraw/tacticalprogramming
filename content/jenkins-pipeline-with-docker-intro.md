@@ -1,5 +1,5 @@
 Title: Jenkins Pipelines and Docker - An Introduction
-Date: 2019-11-06
+Date: 2019-06-11
 Category: howto
 
 # Problem
