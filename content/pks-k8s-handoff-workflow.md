@@ -45,7 +45,7 @@ Usually done with the `uaac` cli. Create two users:
 * A PKS admin, e.g. `pks-admin`
 * A k8s admin, e.g. `k8s-admin`
 
-Give the PKS admin the `pks.clusters.admin` UAA role. Do not give the k8s admin any roles. They will auth via the role bindings later.
+Give the PKS admin the `pks.clusters.admin` UAA role. You do not need to give the k8s admin any roles. They will auth via the role bindings later. However, if you'd like to allow them to list the k8s clusters available with the `pks` command, you can give them the `pks.clusters.read` role.
 
 By the way, remember the credentials. You'll need them later.
 
@@ -85,7 +85,7 @@ Start with this:
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: developer-role
+  name: k8s-admin-role
 rules:
 - apiGroups: ["","extensions","apps","batch"]
   resources: ["pods","deployments","namespaces","jobs","configmaps"]
@@ -114,17 +114,17 @@ Now that the role has been created, bind that role to your k8s admin via the rol
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: sample-developer-role-binding
+  name: k8s-admin-role-binding
 subjects:
 - kind: User
-  name: oidc:developer-1-name # developer-1-name should exist in UAA.
+  name: oidc:k8s-admin # k8s-admin should exist in UAA.
   apiGroup: rbac.authorization.k8s.io
 - kind: User
-  name: oidc:developer-2-name # oidc: prefix is required here in the manifest and it comes from UAA section of the PKS tile
+  name: oidc:another-k8s-admin # oidc: prefix is required here in the manifest and it comes from UAA section of the PKS tile
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
-  name: developer-role
+  name: k8s-admin-role
   apiGroup: rbac.authorization.k8s.io
 ```
 
