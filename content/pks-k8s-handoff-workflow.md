@@ -2,11 +2,14 @@ Title: PKS - Proper Kubernetes Cluster Creation and Handoff
 Date: 2020-04-24
 Category: howto
 
-# Introduction
 
 _Note:_ This will be light on details. The exact commands to run, unfortunately, are an exercise left to the reader. This post is more of a tactical guideline to jog your memory. The author regrets the lack of detail.
 
+# Problem
+
 Creating your k8s clusters is just the first step. How do you hand the cluster off to the right people so you don't have to worry about it anymore? How do you give them access while keeping others out? 
+
+# Solution
 
 The workflow, at a high level, as as follows:
 
