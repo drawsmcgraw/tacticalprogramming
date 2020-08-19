@@ -36,6 +36,6 @@ AUTHOR_FEED_RSS = None
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+RELATIVE_URLS = True
 STATIC_PATHS = ['../CNAME', 'images']
 EXTRA_PATH_METADATA = {'../CNAME': {'path': 'CNAME'}}
