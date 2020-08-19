@@ -120,41 +120,79 @@ test-k8s-01           1               3        v1.17.8+vmware.1-tkg.1.5417466   
 Upon successful creation (i.e. you can list your cluster and get output similar to the above), you can now target that k8s cluster and get to work.
 
 ```
+# log in to the cluster
+kubectl vsphere login --insecure-skip-tls-verify --tanzu-kubernetes-cluster-name=test-k8s-01 --server=wcp.vmwsddc.lab
+
+# target the cluster
 kubectl config set-context test-k8s-01
 ```
 
-Let's deploy a boring Nginx pod:
+Let's deploy an Nginx pod and expose it using a load balancer:
 ```yaml
-# boring-nginx.yml
+# nginx-with-lb.yml
 apiVersion: v1
-kind: Pod
+kind: Pod                      # this is our pod
 metadata:
-  creationTimestamp: null
+  name: static-nginx        # the name that appears in a 'kubectl get pods'
   labels:
-    run: nginx
-  name: nginx
+    app: web                   # we use this label when configuringg the LB below
 spec:
-  containers:
-  - image: nginx
-    name: nginx
-    resources: {}
-  dnsPolicy: ClusterFirst
-  restartPolicy: Always
-status: {}
+  containers:                  # the container going into our pod
+    - name: web
+      image: nginx             # pull the latest nginx container from the default registry
+                               # (Dockerhub, by default)
+      ports:
+        - name: web
+          containerPort: 80    # open port 80 because that's where nginx will listen
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service                  # this is our service
+metadata:
+  name: hello-kubernetes-lb
+spec:
+  type: LoadBalancer           # you can choose the type. "LoadBalancer" will trigger k8s
+                               # to create an external load balancer for us, giving us an
+                               # accessible ip/url we can use.
+  ports:
+  - port: 80                   # this is the port that the LB will listen on
+
+    targetPort: 80             # this is the same port 80 that our Nginx pod is listening on. This
+                               # needs to match the 'containerPort' above.
+
+  selector:                    # this is how we tell k8s to put our service in front of our Nginx pod.
+    app: web                   # this must match the "app: web" label above
 ```
 
 And now deploy:
 
 ```
-kubectl apply -f boring-nginx.yml
+kubectl apply -f nginx-with-lb.yml
 ```
 
-You should now see your pod successfully deployed. Check with `kubectl get pods` or, even better, use the [k9s](https://k9scli.io/) command line tool for some of the best k8s experience you'll have today.
+You should now see your pod successfully deployed, along with its service. Because we're using Vsphere and we asked for a service of type `LoadBalancer`, Vsphere will give us an IP that we can use that will connect us with our pod.
+
+Check with `kubectl get pods` or, even better, use the [k9s](https://k9scli.io/) command line tool for some of the best k8s experience you'll have today.
+
+NOTE: You will need to be patient when waiting for the service to create, especially if this is the first time you're creating a service. It can take upwards of a few minutes to give you an IP for your service, depending on your environment.
+
 ```
+# show pod
 kubectl get pods
 NAME                    READY   STATUS    RESTARTS   AGE
-nginx                   1/1     Running   0          3h5m
+static-nginx         1/1     Running   0          3h5m
+
+# show service
+kubectl get svc
+NAME                        TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+hello-kubernetes-lb         LoadBalancer   10.110.115.57    10.118.9.5    80:31682/TCP     20h
 ```
 
-There are so many ways to go from here (ingress, configuring container registries, and more) but they're beyond the scope of this post. Enjoy your new pushbutton Kubernetes and _get to work_!
+You can safely ignore the random port (in this case, `31682`). That's the internal port assigned to the service inside the Kubernetes cluster and it was chosen by Kubernetes. You won't need it.
+
+In this case, the IP we were given is `10.118.9.5`. Let's plug that into our browser.
+
+![Load Balancer]({filename}images/vsphere-nginx-lb.png)
+
+There are many ways to go from here (ingress, configuring container registries, and more) but they're beyond the scope of this post. Enjoy your new pushbutton Kubernetes and _get to work_!
 
