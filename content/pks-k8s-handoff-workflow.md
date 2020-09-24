@@ -47,6 +47,21 @@ Usually done with the `uaac` cli. Create two users:
 
 Give the PKS admin the `pks.clusters.admin` UAA role. You do not need to give the k8s admin any roles. They will auth via the role bindings later. However, if you'd like to allow them to list the k8s clusters available with the `pks` command, you can give them the `pks.clusters.read` role.
 
+```sh
+# Log into UAA on the PKS API server
+# Use the password from the "Pks Uaa Management Admin Client" from Ops Manager
+uaac target https://api.pks.tacticalprogramming.com:8443
+uaac token client get admin –s <password> 
+
+# Create users
+uaac user add tkgi-admin --emails pks-admin -p password 
+uaac user add k8s-admin --emails k8s-admin -p password 
+
+# Assign Roles
+uaac member add pks.clusters.admin tkgi-admin 
+uaac member add pks.clusters.read k8s-admin 
+```
+
 By the way, remember the credentials. You'll need them later.
 
 Log into PKS as the pks admin. For example:
