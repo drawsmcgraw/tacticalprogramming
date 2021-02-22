@@ -16,11 +16,11 @@ In this post, we're going to focus on `kapp-controller` and show how to set up a
 
 # Solution
 
-[The Docs](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/docs) are going to do a better job than me but, in a sentence, kapp-controller is a small workload that looks for new "apps" in your Kubernetes cluster. Upon discovery of an app (or an update to an existing one), kapp-controller will deploy (or update) that workload. Also, feel free to give the walkthrough a quick spin. It's not long and completely worth it.
+[The Docs](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/docs) are going to do a better job than me but, in a sentence, kapp-controller is a small workload that looks for new "apps" in your Kubernetes cluster. Upon discovery of an app (or an update to an existing one), kapp-controller will deploy (or update) that workload. Also, feel free to give the walkthrough a quick spin. It's short and completely worth your time.
 
 I should note here that "app" is used very loosly. This is not just user-facing applications but, rather, any Kubernetes workload that you define. Examples include more complex workloads like a configured FluentBit deployment, an [Ingress Controller](https://projectcontour.io/), [inspection and diagnostics](https://sonobuoy.io/), and way, way more.
 
-This is best illustrated with an example.
+Let's walk through an example.
 
 ## Install kapp-controller
 
@@ -41,11 +41,12 @@ This is done by creating a service account, role, and RoleBinding. In this examp
 The easy copy/paste is below:
 
 ```
-kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml```
+kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
+```
 
 As of this writing, that file looks like this:
 
-```yml
+```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -85,7 +86,7 @@ kapp-controller can fetch workloads (read: "apps") from a variety of sources: Gi
 
 For this example (and simplicity), we're fetching from an open Git repo. Let's see what that spec looks like:
 
-```yml
+```yaml
 #
 # simple-app.yml
 #
@@ -120,7 +121,7 @@ spec:
 
 That's the high-level abstraction, but what about the app itself? Let's do that right now.
 
-```yml
+```yaml
 #!
 #! app-spec.yml
 #!
@@ -165,7 +166,7 @@ spec:
 
 The astute reader will notice some templating in that file. Namely, the selectors, the ports for the service, and (notably) the message our app will use to greet our users (see the final line). The templating is also why we use `#!` for comments instead of `#`. So where do those values come from? From our values file:
 
-```yml
+```yaml
 #!
 #! app-values.yml
 #!
@@ -221,7 +222,9 @@ $ curl abbf47c4388bb4054cd0623201bf1623-982265869.us-east-2.elb.amazonaws.com
 <h1>Hello kapp controller ftw!</h1>
 ```
 
-Super simple, but neat, right! 
+Super simple, but neat, right?
+
+## Change, Deploy and Observe
 
 Let's change our deployment parameters. We could change anything about it - number of pods, type of service, etc. For this demo, though, we're going to make a simple, but noticeable change in the output. The app pulls the message from an environment variable, `HELLO_MSG`. If we change that, it will change the output. 
 
@@ -236,8 +239,6 @@ Here's a diff, for reference:
 -hello_msg: "kapp controller ftw"
 +hello_msg: "k8s rocks my socks"
 ```
-
-## Deploy and Observe
 
 Once you've made changes, you can `git commit` and `git push`. But before you do that, tail the logs of `kapp-controller` so you can follow along:
 
@@ -272,7 +273,14 @@ There's our new message!
 
 ## Why Does This Matter?
 
-Okay, so changing an environment variable and redeploying isn't impressive. But what I need you to understand is that this applies to _so much more_ than just deploying/updating an application. This applies to anything you deploy with Kubernetes - standard logging solutions that you need on every k8s cluster (like a perfectly-manicured FluentBit deployment), value-add extentions that your users want (like federated user auth), even [more Kubernetes clusters](https://cluster-api.sigs.k8s.io/). This is what _state enforcement_ looks like. kapp-controller will be sure that your workloads are running _in the specific way you need them running_, and it will use your repo as a _source of truth_. 
+Okay, so changing an environment variable and redeploying isn't impressive. But what I need you to understand is that this applies to _so much more_ than just deploying/updating an application. This applies to anything you deploy with Kubernetes:
+
+- standard logging solutions that you need on every k8s cluster (like a perfectly-manicured FluentBit deployment)
+- value-add extentions that your users want (like federated user auth)
+- even [more Kubernetes clusters](https://cluster-api.sigs.k8s.io/). 
+- etc...
+
+This is what _state enforcement_ looks like. kapp-controller will be sure that your workloads are running _in the specific way you need them running_, and it will use your repo as a _source of truth_. 
 
 That last part is the big part - you can define your Kubernetes ecosystem as a rigidly-maintained repo, and kapp-controller will do the work of deploying those workloads for you. At this point, your only limitation is your own imagination.
 
