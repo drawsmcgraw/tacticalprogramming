@@ -18,6 +18,10 @@ In this post, we're going to focus on `kapp-controller` and show how to set up a
 
 [The Docs](https://github.com/vmware-tanzu/carvel-kapp-controller/tree/develop/docs) are going to do a better job than me but, in a sentence, kapp-controller is a small workload that looks for new "apps" in your Kubernetes cluster. Upon discovery of an app (or an update to an existing one), kapp-controller will deploy (or update) that workload. Also, feel free to give the walkthrough a quick spin. It's short and completely worth your time.
 
+It looks something like this.
+
+![kapp-controller]({filename}images/kapp-ctrl-gitops-workflow-700px.png)
+
 I should note here that "app" is used very loosly. This is not just user-facing applications but, rather, any Kubernetes workload that you define. Examples include more complex workloads like a configured FluentBit deployment, an [Ingress Controller](https://projectcontour.io/), [inspection and diagnostics](https://sonobuoy.io/), and way, way more.
 
 Let's walk through an example.
