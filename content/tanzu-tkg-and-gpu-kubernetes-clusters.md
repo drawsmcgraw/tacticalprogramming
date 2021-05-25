@@ -128,6 +128,53 @@ Done
 
 Congrats! You now have a GPU-enabled Kubernetes cluster. This showed AWS, but for another cloud, all you'd need to do is specify the appropriate GPU-enabled instance. Everything else is the same.
 
+# Now What?
+
+Let's kick the tires! There are many things you can do, but if you're just getting started, try out a Jupyter notebook example, found [here](https://nvidia.github.io/gpu-operator/notebook-example.yml), copy/pasted below for completeness:
+
+```yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: tf-notebook
+  labels:
+    app: tf-notebook
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    name: http
+    targetPort: 8888
+    nodePort: 30001
+  selector:
+    app: tf-notebook
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tf-notebook
+  labels:
+    app: tf-notebook
+spec:
+  securityContext:
+    fsGroup: 0
+  containers:
+  - name: tf-notebook
+    image: tensorflow/tensorflow:latest-gpu-jupyter
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+    ports:
+    - containerPort: 8888
+      name: notebook
+```
+
+Once you've deployed it, you can fetch the token with:
+
+```
+kubectl logs -f tf-notebook
+```
+
 # Conclusion
 
 If you're looking for an easy way to get GPU-enabled Kubernetes clusters, you're just about out of excuses now. Between VMware and Nvidia, you're about 30 minutes away from your first cluster where you can start experimenting with the new platform. Enjoy!
