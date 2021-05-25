@@ -28,7 +28,7 @@ helm repo update
 
 # Deploy the gpu operator, this time into its own namespace
 kubectl create ns test-operator 
-helm install -n test-operator --wait --generate-name nvidia/gpu-operator –set operator.defaultRuntime=containerd 
+helm install -n test-operator --wait --generate-name nvidia/gpu-operator --set operator.defaultRuntime=containerd 
 ```
 
 
@@ -77,7 +77,7 @@ helm install \
   --wait \
   --generate-name \
   nvidia/gpu-operator \
-  –set operator.defaultRuntime=containerd 
+  --set operator.defaultRuntime=containerd 
 ```
 
 This will take some time, as the operator is going to detect the kernel version on your Kubernetes worker node, fetch & install the driver, and install the plugin, _and_ label the appropriate Kubernetes worker nodes. 
