@@ -12,8 +12,8 @@ User management is not part of Kubernetes. You have to tie Kubernetes to an exte
 For TKG, we can hook our Kubernetes clusters up to any OIDC provider. For this excercise, we'll use Okta. At a high level, here's what we'll do.
 
 * Create a new 'app' in Okta. This will give us our OIDC endpoint.
-* Deploy a supervisor cluster, configuring it to point to our Okta app
-* Update our Okta app with a callback URL (created during the supervisor cluster creation process)
+* Deploy a management cluster, configuring it to point to our Okta app
+* Update our Okta app with a callback URL (created during the management cluster creation process)
 * Generate kubeconfig and test
 * Create RoleBinding and finalize
 
@@ -34,18 +34,18 @@ UI's change all the time so instead of showing you a visual that will be obviate
 * Sign-on method: OIDC - OpenID Connect
 * Application type: Web Application
 
-After creation, make note of the following details. You'll need them for your supervisor cluster creation
+After creation, make note of the following details. You'll need them for your management cluster creation
 
 * Client ID
 * Client secret
 * Okta domain
 
 
-With that done, let's make our supervisor cluster.
+With that done, let's make our management cluster.
 
-## Create Supervisor Cluster
+## Create Management Cluster
 
-Let's take the easy route and start the Supervisor Cluster creation GUI with:
+Let's take the easy route and start the Management Cluster creation GUI with:
 
 ```
 tanzu management-cluster create -u
@@ -68,16 +68,16 @@ Continue on and finish deploying the cluster. Move on to the next section when i
 
 ## Update Okta App with Callback URL
 
-As part of the supervisor cluster creation, TKG created a load balancer for you. In Amazon, it's an ELB, in Azure, it's whatever Azure calls their load balancers. On vSphere, you should have a public IP that's been created for you. Regardless, the method for finding that callback URL is the same. 
+As part of the management cluster creation, TKG created a load balancer for you. In Amazon, it's an ELB, in Azure, it's whatever Azure calls their load balancers. On vSphere, you should have a public IP that's been created for you. Regardless, the method for finding that callback URL is the same. 
 
 You should have been given the kubeconfig as part of the cluster creation process. Just in case that's not the case, here's how to fetch it:
 
 ```
-# fetch admin kubeconfig for 'id-mgmt-test' supervisor cluster
+# fetch admin kubeconfig for 'id-mgmt-test' management cluster
 tanzu management-cluster kubeconfig get id-mgmt-test –admin 
 ```
 
-Change your context over to your supervisor cluster and:
+Change your context over to your management cluster and:
 
 ```
 kubectl get all -n pinniped-supervisor | grep -i LoadBalancer
@@ -150,9 +150,9 @@ We should now see success! Congrats! You now have the foundation for nice and si
 
 ## Last Thoughts and Day 2 Operations
 
-It's worth pointing out that we've only created the supervisor cluster. However, every workload Kubrernetes cluster that you create will inherit these configs. This also means that you can _update_ the configs on all of your workload clusters by simply updating the config on your supervisor cluster. Here's the command to make that edit.
+It's worth pointing out that we've only created the management cluster. However, every workload Kubrernetes cluster that you create will inherit these configs. This also means that you can _update_ the configs on all of your workload clusters by simply updating the config on your management cluster. Here's the command to make that edit.
 
-Change your context to your supervisor cluster and:
+Change your context to your management cluster and:
 ```
 kubectl -n pinniped-supervisor edit Oidcidentityproviders/upstream-oidc-identity-provider 
 ```
