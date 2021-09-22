@@ -114,7 +114,7 @@ tanzu management-cluster kubeconfig get --export-file /tmp/user-kubeconfig.yml
 And now test it. NOTE: This command will still ultimately fail because we haven't implemented authz yet (that's in the next section!).
 
 ```
-kubectl get pods -A --kubeconfig --export-file /tmp/user-kubeconfig.yml
+kubectl get pods -A --kubeconfig /tmp/user-kubeconfig.yml
 ```
 
 This should cause a browser to open, navigating us to Okta, where we log in with our username and password combo. 
