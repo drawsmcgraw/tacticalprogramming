@@ -143,7 +143,7 @@ kubectl create clusterrolebinding id-mgmt-test-rb --clusterrole cluster-admin --
 Now that that's out of the way, go ahead and re-run that previous command. It should Just Work because 1) you've already authenticated to Okta and 2) we now have the RoleBinding in place.
 
 ```
-kubectl get pods -A --kubeconfig --export-file /tmp/user-kubeconfig.yml
+kubectl get pods -A --kubeconfig /tmp/user-kubeconfig.yml
 ```
 
 We should now see success! Congrats! You now have the foundation for nice and simple user management in your Kubernetes clusters.
