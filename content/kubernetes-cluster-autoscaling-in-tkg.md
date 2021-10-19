@@ -16,7 +16,7 @@ Note: As of this writing, the latest version of TKG is 1.4. This blog post is ba
 
 ## Create a Kubernetes Cluster with Autoscaling Enabled
 
-At its simplest, we simply need to set `ENABLE_AUTOSCALER: true` when deploying a TKG cluster. The simplest way to do this is to include it in your `cluster-config.yml`, or whichever config file you're maintaining for your cluster. There are some other options as well, which I'll lay out below. Most are already set to sane defaults.
+Basically, we just need to set '`ENABLE_AUTOSCALER: true`' when deploying a TKG cluster. The simplest way to do this is to include it in your `cluster-config.yml`, or whichever config file you're maintaining for your cluster. There are some other options as well, which I'll lay out below. Most are already set to sane defaults.
 
 For a complete description of all the values, see [the docs](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-tanzu-config-reference.html#autoscaler).
 
@@ -67,7 +67,7 @@ aws-autoscale-01-cluster-autoscaler   1/1     1            1           5d
 
 ### Examine the Workload Cluster
 
-On the workload cluster (the TKG cluster you created), Cluster Autoscaler creates a config-map to track its status. You can view this config map.
+On the workload cluster (the TKG cluster you created), in the '`kube-system`' namespace, Cluster Autoscaler creates a configmap to track its status. You can view this config map.
 ```text
 $ kubectx aws-autoscale-01-admin@aws-autoscale-01
 ✔ Switched to context "aws-autoscale-01-admin@aws-autoscale-01".
@@ -232,7 +232,7 @@ $ sed -i 's/replicas: 3/replicas: 300/g' php-apache.yml
 
 And then....
 
-```
+```text
 $ kapp deploy -a load-test -f php-apache.yml 
 Target cluster 'https://aws-autoscale-01-apiserver-753085411.us-east-2.elb.amazonaws.com:6443' (nodes: ip-10-0-0-218.us-east-2.compute.internal, 3+)
 
@@ -393,11 +393,11 @@ ip-10-0-0-226.us-east-2.compute.internal   Ready                         <none> 
 
 And we're back down to three worker nodes.
 
-What about changing these configs? While there's not a direct knob to dial, this is all using Cluster API, so there's way to do that as well.
+What about changing these configs? While there's not a direct knob to dial, this is all using Cluster API, so there's a way to do that as well.
 
 ## Edit Min/Max Node Configurations
 
-Since this solution is based on Cluster API, we can jump into the management cluster and edit the Annotations for our Machine Deployment that's part of our workload cluster. Need a refresher on the concept? See [the relevant section in the Cluster API docs](https://cluster-api.sigs.k8s.io/user/concepts.html#machinedeployment).
+Since this solution is based on Cluster API, we can jump into the management cluster and edit the Annotations for our Machine Deployment that's part of our workload cluster. Need a refresher on Machine Deployments? See [the relevant section in the Cluster API docs](https://cluster-api.sigs.k8s.io/user/concepts.html#machinedeployment).
 
 Let's find, and edit, our Machine Deployment.
 
@@ -419,7 +419,7 @@ apiVersion: cluster.x-k8s.io/v1alpha3
 kind: MachineDeployment
 metadata:
   annotations:
-    cluster.k8s.io/cluster-api-autoscaler-node-group-max-size: "10
+    cluster.k8s.io/cluster-api-autoscaler-node-group-max-size: "10"
     cluster.k8s.io/cluster-api-autoscaler-node-group-min-size: "3"
 ```
 
