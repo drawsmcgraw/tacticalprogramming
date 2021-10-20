@@ -9,7 +9,7 @@ We need to reliably implement cluster autoscaling for our Kubernetes platform. H
 
 # Solution
 
-TKG uses the regular [Cluster Autoscaler](https://github.com/kubernetes/autoscaler) but makes it easy to configure. We'll ask TKG to enable Cluster Autoscaler for us, dial in a few options, and then test it out.
+TKG uses the ClusterAPI provider, part of the [Cluster Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler/cloudprovider/clusterapi) but makes it easy to configure. We'll ask TKG to enable Cluster Autoscaler for us, dial in a few options, and then test it out.
 
 Note: As of this writing, the latest version of TKG is 1.4. This blog post is based on [the docs for that version](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-cluster-lifecycle-scale-cluster.html#scale-worker-nodes-with-cluster-autoscaler-0) as well as [a helpful blog post](https://little-stuff.com/2020/12/10/using-autoscaler-functionality-in-tanzu-kubernetes-grid-1-2-1/) by Chris Little.
 
@@ -397,7 +397,7 @@ What about changing these configs? While there's not a direct knob to dial, this
 
 ## Edit Min/Max Node Configurations
 
-Since this solution is based on Cluster API, we can jump into the management cluster and edit the Annotations for our Machine Deployment that's part of our workload cluster. Need a refresher on Machine Deployments? See [the relevant section in the Cluster API docs](https://cluster-api.sigs.k8s.io/user/concepts.html#machinedeployment).
+Since this solution is based on the ClusterAPI provider, we can jump into the management cluster and edit the Annotations for our Machine Deployment that's part of our workload cluster. Need a refresher on Machine Deployments? See [the relevant section in the Cluster API docs](https://cluster-api.sigs.k8s.io/user/concepts.html#machinedeployment).
 
 Let's find, and edit, our Machine Deployment.
 
