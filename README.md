@@ -1,6 +1,6 @@
 To build the venv for authoring and development:
 ```
-virtualenv venv -p python3.6
+virtualenv venv -p python3.8
 source venv/bin/activate
 pip install -U --force-reinstall pip
 pip install -r requirements.txt 
