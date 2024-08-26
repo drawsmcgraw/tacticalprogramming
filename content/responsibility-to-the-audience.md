@@ -3,11 +3,13 @@ Date: 2024-08-26
 Category: philosophy
 
 When you're the one talking, all eyes are on you. This means several things:
+
 - Everyone showed up to accomplish something.
 - We all dedicated this time to _this thing_.
 - We chose to be here instead of anywhere else.
 
 It doesn't matter if it's a three-person meeting to decide on today's work or a recorded TED Talk with tens of thousands of people in the audience. Your responsibility doesn't change:
+
 - inform / assist
 - keep their attention
 
