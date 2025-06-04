@@ -36,7 +36,7 @@ In detail.
 [The docs](https://docs.cline.bot/mcp/configuring-mcp-servers) are going to be a more long-lasting resource here. For completeness, I'll post mine looks like for my local Ollama install. Please know, however, that I'm currently using Gemini as my LLM service since I'm still looking for a model I can host myself for this exercise.
 
 
-<img src="{static}images/wiz-mcp-01-cline-mcp-server-ollama.png" style="max-width:100%; height:auto;" alt="Ollama Config">
+<img src="{filename}images/wiz-mcp-01-cline-mcp-server-ollama.png" style="max-width:100%; height:auto;" alt="Ollama Config">
 
 
 Cline will even query Ollama for the available models for you! 
@@ -67,14 +67,14 @@ Here is my config that currently works:
 
 And here is what a successful entry looks like in the Cline config.
 
-<img src="{static}images/wiz-mcp-02-cline-mcp-server-wiz.png" style="max-width:100%; height:auto;" alt="MCP Config">
+<img src="{filename}images/wiz-mcp-02-cline-mcp-server-wiz.png" style="max-width:100%; height:auto;" alt="MCP Config">
 
 
 ## Profit
 
 We can now interact with our Wiz environment through the MCP server!
 
-<img src="{static}images/wiz-mcp-03-profit.png" style="max-width:100%; height:auto;" alt="Successful Wiz MCP Server interaction">
+<img src="{filename}images/wiz-mcp-03-profit.png" style="max-width:100%; height:auto;" alt="Successful Wiz MCP Server interaction">
 
 ## Notes
 
