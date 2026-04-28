@@ -2,7 +2,4 @@
 title: "Books"
 ---
 
-A running list of books I'm reading or have read.
-
-<!-- Add books as list items below. For example: -->
-<!-- - **Book Title** by Author Name — A short note about it. -->
+A running shelf of what I'm reading and what I've read. Notes are conversational — passages from the book, my responses to them, things I want to remember.

@@ -35,6 +35,16 @@
 <link rel="stylesheet" href="{{ $home.RelPermalink }}" />
 {{ end }}
 
+{{ if eq .Section "books" }}
+{{ $books := resources.Get "css/books.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $books.RelPermalink }}" />
+{{ end }}
+
+{{ if eq .Section "posts" }}
+{{ $posts := resources.Get "css/posts.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $posts.RelPermalink }}" />
+{{ end }}
+
 <!-- JavaScript -->
 {{ $app := resources.Get "js/app.js" | minify | fingerprint }}
 <script src="{{ $app.RelPermalink }}" defer></script>
