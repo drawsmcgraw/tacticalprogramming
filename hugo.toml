@@ -1,0 +1,33 @@
+baseURL = 'https://www.tacticalprogramming.com/'
+languageCode = 'en-us'
+title = 'Tactical Programming'
+paginate = 10
+
+[params]
+  author = "Drew Malone"
+  description = "Technical blog about Kubernetes, Tanzu, and cloud-native topics"
+  mainSections = ["posts"]
+  introTitle = "Drew — a human"
+  introText = ""
+
+[menu]
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "Books"
+    url = "/books/"
+    weight = 2
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+
+
+
+[build]
+  writeStats = true
