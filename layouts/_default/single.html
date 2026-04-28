@@ -1,0 +1,63 @@
+{{ define "main" }}
+<div class="shell">
+  {{ if .Title }}
+  <article class="article-layout toc-hidden">
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="article-kicker-bar">
+      <span class="section-tag">Articles</span>
+      <span>{{ .Date.Format "2006-01-02" }}</span>
+    </div>
+
+    <div class="article-hero">
+      <h1>{{ .Title }}</h1>
+      <p class="dek">{{ .Summary | default (.Content | plainify | truncate 160) }}</p>
+      <div class="byline">
+        <span class="by">By</span>
+        <span class="author">{{ .Site.Params.author }}</span>
+        <span class="sep">—</span>
+        <time class="date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        <span class="sep">—</span>
+        <span class="read-time">{{ .ReadingTime }} min read</span>
+      </div>
+    </div>
+
+    <div class="article-body" id="articleBody">
+      {{ .Content }}
+    </div>
+
+    <aside class="toc-wrap">
+      <nav class="toc">
+        <h4>On this page</h4>
+        <ol id="tocList"></ol>
+      </nav>
+    </aside>
+
+    {{ if .Params.prev }}
+    {{ end }}
+    {{ if .Params.next }}
+    {{ end }}
+    {{ if or .Params.prev .Params.next }}
+    <div class="post-nav">
+      {{ if .Params.prev }}
+      <a href="{{ .Params.prev.RelPermalink }}" class="prev">
+        <div class="dir">Previous</div>
+        <div class="ttl">{{ .Params.prev.Title }}</div>
+      </a>
+      {{ end }}
+      {{ if .Params.next }}
+      <a href="{{ .Params.next.RelPermalink }}" class="next">
+        <div class="dir">Next</div>
+        <div class="ttl">{{ .Params.next.Title }}</div>
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </article>
+  {{ else }}
+  <main>
+    {{ .Content }}
+  </main>
+  {{ end }}
+</div>
+{{ end }}

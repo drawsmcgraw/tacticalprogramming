@@ -1,0 +1,38 @@
+<!doctype html>
+<html
+    lang="{{ .Site.LanguageCode }}"
+    data-theme="dark"
+    data-accent="vermillion"
+    data-code-theme="default"
+    data-show-toc="true"
+>
+    <head>
+        {{- partial "head.html" . -}}
+    </head>
+    <body>
+        {{- partial "header.html" . -}}
+        <main>{{- block "main" . }}{{ end -}}</main>
+        {{- partial "footer.html" . -}}
+        <div id="tweaks" class="tweaks">
+            <div
+                style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                "
+            >
+                <h4>TWEAKS</h4>
+                <button class="tweaks-close" aria-label="Close tweaks panel">
+                    &times;
+                </button>
+            </div>
+            <div class="group">
+                <label>Theme</label>
+                <div class="seg" data-seg="theme">
+                    <button data-value="dark">Dark</button>
+                    <button data-value="light">Light</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

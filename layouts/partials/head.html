@@ -1,0 +1,49 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    {{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title
+    }}{{ end }}
+</title>
+<meta
+    name="description"
+    content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+/>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:wght@400;500;600&display=swap"
+    rel="stylesheet"
+/>
+
+<!-- CSS Assets -->
+{{ $theme := resources.Get "css/theme.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $theme.RelPermalink }}" />
+
+{{ $article := resources.Get "css/article.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $article.RelPermalink }}" />
+
+{{ $code := resources.Get "css/code.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $code.RelPermalink }}" />
+
+{{ $syntax := resources.Get "css/syntax.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $syntax.RelPermalink }}" />
+
+{{ if .IsHome }} {{ $home := resources.Get "css/home.css" | minify | fingerprint
+}}
+<link rel="stylesheet" href="{{ $home.RelPermalink }}" />
+{{ end }}
+
+<!-- JavaScript -->
+{{ $app := resources.Get "js/app.js" | minify | fingerprint }}
+<script src="{{ $app.RelPermalink }}" defer></script>
+
+{{ with .OutputFormats.Get "RSS" }}
+<link
+    rel="alternate"
+    type="application/rss+xml"
+    title="{{ $.Site.Title }}"
+    href="{{ .RelPermalink }}"
+/>
+{{ end }}
