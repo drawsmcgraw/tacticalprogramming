@@ -131,7 +131,7 @@
     color: var(--fg);
 }
 .article-body > * + * {
-    margin-top: 1.05em;
+    margin-top: 1.6em;
 }
 
 /* Drop cap on first paragraph */
@@ -180,6 +180,9 @@
 .article-body p {
     margin: 0;
     text-wrap: pretty;
+}
+.article-body > p + p {
+    margin-top: 2em;
 }
 .article-body ul,
 .article-body ol {

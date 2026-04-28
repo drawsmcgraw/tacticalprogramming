@@ -1,0 +1,93 @@
+/* =========================================================
+   Posts archive — year-grouped card grid
+   ========================================================= */
+
+.posts-intro {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+  max-width: 64ch;
+  margin: 28px 0 0;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-bottom: 16px;
+}
+
+.posts-grid .post-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  padding: 22px 24px 28px;
+  border-right: 1px solid var(--rule-dim);
+  border-bottom: 1px solid var(--rule-dim);
+  transition: background-color 0.2s var(--ease);
+}
+.posts-grid .post-card:nth-child(3n) {
+  border-right: none;
+  padding-right: 0;
+}
+.posts-grid .post-card:nth-child(3n+1) {
+  padding-left: 0;
+}
+.posts-grid .post-card:hover {
+  background: color-mix(in oklab, var(--accent) 6%, transparent);
+}
+
+.posts-grid .post-card .date {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--fg-subtle);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+.posts-grid .post-card h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin: 0 0 12px;
+  font-weight: 900;
+  text-wrap: balance;
+}
+.posts-grid .post-card:hover h3 {
+  color: var(--accent);
+}
+.posts-grid .post-card .dek {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--fg-muted);
+  margin: 0 0 14px;
+}
+.posts-grid .post-card .meta {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--fg-subtle);
+  margin-top: auto;
+}
+
+@media (max-width: 900px) {
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+  .posts-grid .post-card,
+  .posts-grid .post-card:nth-child(3n),
+  .posts-grid .post-card:nth-child(3n+1) {
+    padding: 22px 0;
+    border-right: none;
+    border-bottom: 1px solid var(--rule-dim);
+  }
+  .posts-grid .post-card:last-child {
+    border-bottom: none;
+  }
+}
