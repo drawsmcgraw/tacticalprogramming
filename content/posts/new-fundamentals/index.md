@@ -2,7 +2,7 @@
 title: "New Fundamentals"
 date: 2026-04-28T18:24:13-04:00
 categories: []
-draft: true
+draft: false
 ---
 
 I started writing on the Internet with [a nod to the value of the fundamentals]({{< relref "posts/fundamentals.md" >}}), with an unapolagetically strong emphasis on learning bash. I think now is a good time to revisit what a "fundamental skill" is today, in 2026. 
