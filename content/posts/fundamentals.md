@@ -4,7 +4,7 @@ date: 2018-06-18
 categories: ["philosophy"]
 draft: false
 ---
-###_If you want to be useful, learn a trade_
+_If you want to be useful, learn a trade_
 
 In trying to keep up with the latest in technology and staying relevant, it's easy to forget that each one of these emerging technologies is built upon a bedrock of simple, reliable tools. Simple tools that you can learn, and then use everywhere you go because they'll never be obsolete.
 
