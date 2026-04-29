@@ -1,5 +1,22 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script>
+  (function () {
+    try {
+      var map = {
+        'blog:theme': 'data-theme',
+        'blog:accent': 'data-accent',
+        'blog:code': 'data-code-theme',
+        'blog:toc': 'data-show-toc'
+      };
+      for (var key in map) {
+        var v = localStorage.getItem(key);
+        if (v) document.documentElement.setAttribute(map[key], v);
+      }
+    } catch (e) {}
+  })();
+</script>
 <title>
     {{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title
     }}{{ end }}
@@ -56,4 +73,10 @@
     title="{{ $.Site.Title }}"
     href="{{ .RelPermalink }}"
 />
+{{ end }}
+
+{{ if hugo.IsProduction }}
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c1e4f6ccf10e4d9abac2919686f0f9b2"}'></script>
+<!-- End Cloudflare Web Analytics -->
 {{ end }}

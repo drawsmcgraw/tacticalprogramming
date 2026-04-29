@@ -146,11 +146,5 @@
   // Announce availability AFTER listener is registered
   try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(e){}
 
-  // Apply any persisted TOC pref
-  try {
-    const toc = localStorage.getItem(LS.toc);
-    if (toc) root.setAttribute('data-show-toc', toc);
-  } catch(e){}
-
   syncTweaks();
 })();

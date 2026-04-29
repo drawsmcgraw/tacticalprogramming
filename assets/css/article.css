@@ -500,3 +500,34 @@
         text-align: left;
     }
 }
+
+/* Side-by-side image pair (used by the `pair` shortcode) */
+.article-body .img-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0;
+}
+.article-body .img-pair figure {
+    margin: 0;
+}
+.article-body .img-pair img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--border);
+}
+.article-body .img-pair figcaption {
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--fg-muted);
+    text-align: center;
+}
+@media (max-width: 600px) {
+    .article-body .img-pair {
+        grid-template-columns: 1fr;
+    }
+}
