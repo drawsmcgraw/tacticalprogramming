@@ -1,0 +1,15 @@
+{{- $lang := .Type | default "text" -}}
+{{- $result := transform.HighlightCodeBlock . -}}
+<div class="code-block">
+  <div class="code-head">
+    <span class="lang">{{ $lang }}</span>
+    <button class="copy-btn" type="button" aria-label="Copy code">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <rect x="4" y="4" width="9" height="10" rx="1"></rect>
+        <path d="M3 11V3a1 1 0 0 1 1-1h7"></path>
+      </svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  {{ $result.Wrapped }}
+</div>

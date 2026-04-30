@@ -1,0 +1,45 @@
+{{ define "main" }}
+<div class="shell">
+  <article class="book-page">
+    <div class="article-kicker-bar">
+      <span class="section-tag">Bookshelf</span>
+      {{ with .Params.date_read }}
+      <span>Read {{ dateFormat "January 2006" . }}</span>
+      {{ end }}
+    </div>
+
+    <div class="book-jacket">
+      <div class="book-jacket-cover">
+        {{ $cover := .Resources.GetMatch "cover.*" }}
+        {{ if $cover }}
+          {{ $img := $cover.Fit "500x750" }}
+          <img src="{{ $img.RelPermalink }}" alt="{{ .Title }} — cover" />
+        {{ else }}
+          <div class="cover-fallback">
+            <span class="cover-fallback-title">{{ .Title }}</span>
+            {{ with .Params.author }}<span class="cover-fallback-author">{{ . }}</span>{{ end }}
+          </div>
+        {{ end }}
+      </div>
+      <div class="book-jacket-meta">
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.author }}<p class="by">by <span class="author">{{ . }}</span></p>{{ end }}
+        {{ with .Params.year }}<p class="year">{{ . }}</p>{{ end }}
+        <div class="meta-row">
+          {{ with .Params.status }}<span class="status status-{{ . }}">{{ . }}</span>{{ end }}
+          {{ with .Params.rating }}
+            {{ $rating := . }}
+            <span class="rating" aria-label="Rating: {{ $rating }} of 5">
+              {{ range seq 1 5 }}{{ if le . $rating }}★{{ else }}☆{{ end }}{{ end }}
+            </span>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+
+    <div class="article-body no-dropcap book-body">
+      {{ .Content }}
+    </div>
+  </article>
+</div>
+{{ end }}

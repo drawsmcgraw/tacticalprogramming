@@ -1,0 +1,16 @@
+{{- $src1 := .Get "src1" -}}
+{{- $alt1 := .Get "alt1" | default "" -}}
+{{- $cap1 := .Get "caption1" -}}
+{{- $src2 := .Get "src2" -}}
+{{- $alt2 := .Get "alt2" | default "" -}}
+{{- $cap2 := .Get "caption2" -}}
+<div class="img-pair">
+  <figure>
+    <img src="{{ $src1 }}" alt="{{ $alt1 }}" loading="lazy" />
+    {{ with $cap1 }}<figcaption>{{ . }}</figcaption>{{ end }}
+  </figure>
+  <figure>
+    <img src="{{ $src2 }}" alt="{{ $alt2 }}" loading="lazy" />
+    {{ with $cap2 }}<figcaption>{{ . }}</figcaption>{{ end }}
+  </figure>
+</div>

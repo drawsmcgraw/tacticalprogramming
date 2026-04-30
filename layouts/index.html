@@ -1,0 +1,76 @@
+{{ define "main" }}
+<div class="shell">
+  <div class="issue-banner">
+    <span class="headline-of-day">Headline of the Day</span>
+    <strong>Tactical Programming</strong>
+    <span>Issue #{{ now.Year }}</span>
+  </div>
+
+  {{ $posts := where .Site.RegularPages "Section" "posts" }}
+  <div class="lead-grid">
+    <div class="col col-left">
+      {{ with index $posts 0 }}
+        <article class="feature-lead">
+          <h2>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h2>
+          <p class="dek">{{ .Summary | default (.Content | plainify | truncate 160) }}</p>
+          <div class="meta-row">
+            <span class="author">{{ $.Site.Params.author }}</span>
+            <span class="sep">—</span>
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+    <div class="col col-right">
+      {{ range $posts | after 1 | first 2 }}
+        <article class="sub-story">
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p class="dek">{{ .Summary | default (.Content | plainify | truncate 120) }}</p>
+          <div class="meta">
+            <span class="author">{{ $.Site.Params.author }}</span>
+            <span class="sep">—</span>
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+
+  <div class="section-bar">
+    <h3 class="title">Dispatches from the Field</h3>
+    <span class="meta">{{ len $posts }} articles</span>
+  </div>
+
+  <div class="dispatches">
+    {{ range $posts }}
+    <article>
+      <span class="num">{{ .Date.Format "Jan 2" }}</span>
+      <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      <p>{{ .Summary | default (.Content | plainify | truncate 120) }}</p>
+      <div class="meta">
+        <span class="author">{{ .Site.Params.author }}</span>
+        <span class="sep">—</span>
+        <span>{{ .ReadingTime }} min read</span>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+
+  <div class="colophon-strip">
+    <div>
+      <div class="k">Author</div>
+      <div class="v">{{ .Site.Params.author }}</div>
+    </div>
+    <div>
+      <div class="k">RSS Feed</div>
+      <div class="v"><a href="/index.xml">Subscribe via RSS</a></div>
+    </div>
+    <div>
+      <div class="k">GitHub</div>
+      <div class="v"><a href="https://github.com/drawsmcgraw">drawsmcgraw</a></div>
+    </div>
+  </div>
+</div>
+{{ end }}

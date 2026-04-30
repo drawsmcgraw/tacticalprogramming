@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="shell">
+    <div class="issue-banner">
+        <span class="headline-of-day">All {{ .Title }}</span>
+    </div>
+
+    <ul class="archive">
+        {{ range .Pages }}
+        <li>
+            <div class="date">{{ .Date.Format "Jan 2, 2006" }}</div>
+            <div class="num">{{ .ReadingTime }} min</div>
+            <div class="title-col">
+                <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                <p>
+                    {{ .Summary | default (.Content | plainify | truncate 160)
+                    }}
+                </p>
+            </div>
+            <div class="cat">Articles</div>
+        </li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}

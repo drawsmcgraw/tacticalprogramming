@@ -1,0 +1,37 @@
+{{ define "main" }}
+<div class="shell">
+  <div class="issue-banner">
+    <span class="headline-of-day">Bookshelf</span>
+    <strong>{{ .Title }}</strong>
+    <span>{{ len .Pages }} {{ if eq (len .Pages) 1 }}book{{ else }}books{{ end }}</span>
+  </div>
+
+  {{ with .Content }}
+    <div class="bookshelf-intro">{{ . }}</div>
+  {{ end }}
+
+  <div class="bookshelf-grid">
+    {{ range .Pages }}
+    <a class="book-card" href="{{ .RelPermalink }}">
+      <div class="book-card-cover">
+        {{ $cover := .Resources.GetMatch "cover.*" }}
+        {{ if $cover }}
+          {{ $img := $cover.Fit "400x600" }}
+          <img src="{{ $img.RelPermalink }}" alt="{{ .Title }} — cover" loading="lazy" />
+        {{ else }}
+          <div class="cover-fallback">
+            <span class="cover-fallback-title">{{ .Title }}</span>
+            {{ with .Params.author }}<span class="cover-fallback-author">{{ . }}</span>{{ end }}
+          </div>
+        {{ end }}
+        {{ with .Params.status }}<span class="status status-{{ . }}">{{ . }}</span>{{ end }}
+      </div>
+      <div class="book-card-meta">
+        <h3>{{ .Title }}</h3>
+        {{ with .Params.author }}<p class="author">{{ . }}</p>{{ end }}
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

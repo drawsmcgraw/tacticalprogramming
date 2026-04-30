@@ -1,0 +1,33 @@
+{{ define "main" }}
+<div class="shell">
+  <div class="issue-banner">
+    <span class="headline-of-day">All {{ .Title }}</span>
+    <strong>Tactical Programming</strong>
+    <span>{{ len .Pages }} {{ if eq (len .Pages) 1 }}article{{ else }}articles{{ end }}</span>
+  </div>
+
+  {{ with .Content }}
+    <div class="posts-intro">{{ . }}</div>
+  {{ end }}
+
+  {{ range .Pages.GroupByDate "2006" }}
+    <div class="section-bar">
+      <h3 class="title">Volume {{ .Key }}</h3>
+      <span class="meta">{{ len .Pages }} {{ if eq (len .Pages) 1 }}article{{ else }}articles{{ end }}</span>
+    </div>
+
+    <div class="posts-grid">
+      {{ range .Pages }}
+      <a class="post-card" href="{{ .RelPermalink }}">
+        <span class="date">{{ .Date.Format "Jan 2" }}</span>
+        <h3>{{ .Title }}</h3>
+        <p class="dek">{{ .Summary | default (.Content | plainify | truncate 140) }}</p>
+        <div class="meta">
+          <span>{{ .ReadingTime }} min read</span>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  {{ end }}
+</div>
+{{ end }}
