@@ -5,7 +5,7 @@ paginate = 10
 
 [params]
   author = "Drew Malone"
-  description = "Technical blog about Kubernetes, Tanzu, and cloud-native topics"
+  description = "The last mile of the technical journey"
   mainSections = ["posts"]
   introTitle = "Drew — a human"
   introText = ""
