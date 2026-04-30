@@ -2,6 +2,7 @@ baseURL = 'https://www.tacticalprogramming.com/'
 languageCode = 'en-us'
 title = 'Tactical Programming'
 paginate = 10
+disableHugoGeneratorInject = true
 
 [params]
   author = "Drew Malone"

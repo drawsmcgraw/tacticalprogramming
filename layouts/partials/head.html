@@ -26,13 +26,12 @@
     content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}"
 />
 
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:wght@400;500;600&display=swap"
-    rel="stylesheet"
-/>
+<!-- Self-hosted fonts -->
+{{ $fonts := resources.Get "css/fonts.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $fonts.RelPermalink }}" />
+{{ range slice "archivo-black-400" "inter-variable" "inter-tight-variable" "jetbrains-mono-variable" "source-serif-4-variable" }}
+<link rel="preload" as="font" type="font/woff2" href="/fonts/{{ . }}.woff2" crossorigin />
+{{ end }}
 
 <!-- CSS Assets -->
 {{ $theme := resources.Get "css/theme.css" | minify | fingerprint }}
