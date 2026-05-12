@@ -6,7 +6,7 @@ date: 2026-05-12T08:48:15-04:00
 date_read: 2026-05-12T08:48:15-04:00
 status: "read"
 rating:
-draft: true
+draft: false
 ---
 
 Memoirs are, by far, my favorite genre of books. There's no better way to gain an appreciation of the world than by hearing other people's experiences and there's no better way to hear those than by listening to the people who lived them.
