@@ -9,6 +9,20 @@
   border: 1px solid var(--border);
   font-family: var(--font-mono);
   overflow: hidden;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.code-block .highlight {
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Chroma's .line uses display:flex for line-number layouts we don't use.
+   The default min-width:auto on flex items prevents long code lines from
+   shrinking, blowing past the viewport on mobile. */
+.code-block .chroma .line {
+  display: block;
 }
 
 @media (min-width: 900px) {
