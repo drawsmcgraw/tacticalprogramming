@@ -120,7 +120,7 @@ kubectl get pods -A --kubeconfig /tmp/user-kubeconfig.yml
 
 This should cause a browser to open, navigating us to Okta, where we log in with our username and password combo. 
 
-<p style="text-align:center;"><img alt="Okta Login" src="/images/okta-login-page.png"></p>
+![Okta Login](/images/okta-login-page.png)
 
 Note, that we're doing this with an auto-browser launch but you can disable this behavior if you want. Before generating your generic kubeconfig, set the following environment variable:
 
