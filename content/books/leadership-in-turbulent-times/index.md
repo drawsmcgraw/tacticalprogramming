@@ -6,7 +6,7 @@ date: 2026-05-22T08:05:52-04:00
 date_read: 2026-05-22T08:05:52-04:00
 status: "read"
 rating:
-draft: true
+draft: false
 ---
 
 > “the habits of a vigorous mind are formed in contending with difficulties. Great necessities call out great virtues.” 
