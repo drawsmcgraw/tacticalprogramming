@@ -1,0 +1,7 @@
+{{- $src := .Get "src" | default (.Get 0) -}}
+{{- $alt := .Get "alt" | default (.Get 1) | default "" -}}
+{{- $cap := .Get "caption" | default (.Get 2) -}}
+<figure class="img-wide">
+  <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy" />
+  {{ with $cap }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

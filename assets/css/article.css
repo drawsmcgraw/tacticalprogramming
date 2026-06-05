@@ -532,3 +532,25 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Wide image: breaks out of the reading column up to the shell width
+   (used by the `wide` shortcode). Left edge stays aligned with the text. */
+.article-body .img-wide {
+    width: min(calc(var(--wide-width) - 64px), calc(100vw - 64px));
+    max-width: none;
+    margin: 32px 0;
+}
+.article-body .img-wide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--border);
+}
+.article-body .img-wide figcaption {
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--fg-muted);
+}
