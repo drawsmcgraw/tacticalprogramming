@@ -25,4 +25,6 @@ Remove the barriers. Bring software development in-house. The largest success fr
 
 One strong opinion, loosely held, I have is that any sufficiently large organization should have in-house IT. Not offshored, not contracted out. In. House. Staffed with the same people that execute the mission. These in-house technologists have stronger historical knowledge of systems, care more about the mission, and are able to quickly iterate on systems without the nonsense of a contract addendum (i.e. move faster). I believe the US federal government falls into that category. Building the USDS is exactly this pattern, but scaled up. 
 
+I saw this exact pattern succeed during my time at Pivotal software in their public sector team. When you train, build, and empower internal teams, who are there for a the long haul, to solve their own problems with software, you get so much more done than outsourcing it to a stranger. It's very hard to overestimate the difference this makes.
+
 Does it solve everything? Not even close. But it shows a method that works. Something that, if taken care of and funded thoughtfully, can start to make real differences in government software systems and building trust in government overall, which is something I think we can all agree is something we need more of.
