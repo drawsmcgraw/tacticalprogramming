@@ -2,7 +2,7 @@
 title: "Kronk Part 03"
 date: 2026-06-20T09:10:27-04:00
 categories: []
-draft: true
+draft: false
 ---
 
 ## Problem
