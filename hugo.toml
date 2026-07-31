@@ -6,7 +6,7 @@ disableHugoGeneratorInject = true
 
 [params]
   author = "Drew Malone"
-  description = "The last mile of the technical journey"
+  description = "Strong Opinions, Loosely Held"
   mainSections = ["posts"]
   introTitle = "Drew — a human"
   introText = ""
