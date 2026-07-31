@@ -4,7 +4,6 @@ author: "Stanley McChrystal"
 year: 2015
 date: 2018-06-18
 date_read: 2018-06-18
-status: "read"
 rating:
 categories: ["philosophy"]
 draft: false

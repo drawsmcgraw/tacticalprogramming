@@ -4,7 +4,6 @@ author: "Doris Kearns Goodwin"
 year: 2018
 date: 2026-05-22T08:05:52-04:00
 date_read: 2026-05-22T08:05:52-04:00
-status: "read"
 rating:
 draft: false
 ---

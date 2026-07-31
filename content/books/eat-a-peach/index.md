@@ -4,7 +4,6 @@ author: "David Chang"
 year: 2020
 date: 2026-05-12T08:48:15-04:00
 date_read: 2026-05-12T08:48:15-04:00
-status: "read"
 rating:
 draft: false
 ---

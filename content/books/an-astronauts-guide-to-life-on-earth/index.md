@@ -4,7 +4,6 @@ author: "Chris Hadfield"
 year: 2015
 date: 2026-05-20T08:03:42-04:00
 date_read: 2026-05-20T08:03:42-04:00
-status: "read"
 rating:
 draft: false
 ---
