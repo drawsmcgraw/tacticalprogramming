@@ -3,7 +3,7 @@ title: "The Reverse Centaurs Guide to Life After Ai"
 date: 2026-09-18T08:25:17-04:00
 author: "Cory Doctorow"
 year: 2026
-draft: true
+draft: false
 ---
 
 > The most important fact about a technology isn't what it does. It who it does it for, and who it does it to.
