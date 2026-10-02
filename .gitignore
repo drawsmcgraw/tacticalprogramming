@@ -1,7 +1,4 @@
-venv/
-output/
 .idea/
-__pycache__/
 public/
 resources/
 .hugo_build.lock

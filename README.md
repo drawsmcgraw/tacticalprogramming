@@ -1,16 +1,16 @@
-To build the venv for authoring and development:
+Built with [Hugo](https://gohugo.io/) and deployed by Netlify (see `netlify.toml`).
+Netlify builds with Hugo 0.131.0; use a matching (extended) version locally.
+
+Starting the dev server (includes drafts):
 ```
-virtualenv venv -p python3.8
-source venv/bin/activate
-pip install -U --force-reinstall pip
-pip install -r requirements.txt 
+hugo server -D
 ```
 
-Starting/Stopping the dev server
+The dev server listens on `localhost:1313` by default.
+
+Building the site the same way Netlify does:
 ```
-make devserver 
-make stopserver 
+hugo --gc --minify
 ```
 
-The dev server listens on `locahost:8000` by default.
-
+Output is written to `public/`.
