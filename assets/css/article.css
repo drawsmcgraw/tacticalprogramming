@@ -178,8 +178,15 @@
     scroll-margin-top: 32px;
 }
 
+/* Margin resets use :where() so they carry less specificity than the
+   `.article-body > * + *` flow rule above; otherwise they zero out the
+   gap between a paragraph and an adjacent list. */
+:where(.article-body) p,
+:where(.article-body) ul,
+:where(.article-body) ol {
+    margin-block: 0;
+}
 .article-body p {
-    margin: 0;
     text-wrap: pretty;
 }
 .article-body > p + p {
@@ -188,7 +195,6 @@
 .article-body ul,
 .article-body ol {
     padding-left: 24px;
-    margin-block: 0;
     font-family: var(--font-serif);
 }
 .article-body li + li {
